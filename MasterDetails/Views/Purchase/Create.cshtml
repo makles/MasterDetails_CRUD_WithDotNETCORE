@@ -1,0 +1,121 @@
+﻿@model MasterDetails.Models.PurchaseInfo
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>PurchaseInfo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="OrderNo" class="control-label"></label>
+                <input asp-for="OrderNo" class="form-control" />
+                <span asp-validation-for="OrderNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PONO" class="control-label"></label>
+                <input asp-for="PONO" class="form-control" />
+                <span asp-validation-for="PONO" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProdctId" class="control-label"></label>
+                <input asp-for="ProdctId" class="form-control" />
+                <span asp-validation-for="ProdctId" class="text-danger"></span>
+            </div>
+
+<table class="table" id="ExpTable">
+    <thead>
+        <tr>
+            <th>
+                Driscription
+            </th>
+            <th>
+                Qty
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+               Total
+            </th>
+            <th>
+              <button type="button" id="AddButton" onclick="btnAdd(this)" class="btn btn-primary visible">Add</button>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int i=0;i<Model.PurchaseDetails.Count;i++)
+        {
+            <tr>
+                <td>
+                    <input asp-for="@Model.PurchaseDetails[i].Driscription" class="form-control" />
+                </td>
+                <td>
+                    <input asp-for="@Model.PurchaseDetails[i].Qty" class="form-control" />
+                </td>
+                <td>
+                    <input asp-for="@Model.PurchaseDetails[i].Price" class="form-control" />
+                </td>
+                <td>
+                    <input asp-for="@Model.PurchaseDetails[i].Total" class="form-control" />
+                </td>
+                <td>
+                    <button id="btnremove-@i" onclick="remove(this)" class="btn btn-danger visible" >Remove</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+           <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $(document).ready(function () {
+
+            //function btnAdd(btn) {
+            //    console.log("Hello");
+            //    var table = document.getElementById("TableEx");
+            //    var rows = table.getElementsByTagName("tr");
+            //    var RowoutherHTML = rows[rows.length - 1].outerHTML;
+            //    var lastRowIndex = rows.length - 2;
+            //    var nextRowIndex = eval(lastRowIndex) + 1;
+
+            //    RowoutherHTML = RowoutherHTML.replaceAll('_' + lastRowIndex + '_', '_' + nextRowIndex + '_');
+            //    RowoutherHTML = RowoutherHTML.replaceAll('[' + lastRowIndex + ']', '[' + nextRowIndex + ']');
+            //    RowoutherHTML = RowoutherHTML.replaceAll('_' + lastRowIndex, '_' + nextRowIndex);
+
+            //    var newRow = table.insertRow();
+            //    newRow.innerHTML = RowoutherHTML;
+            //}
+
+    
+        })
+    </script>
+
+
+
+}
+
+  
